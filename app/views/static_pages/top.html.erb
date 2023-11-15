@@ -1,5 +1,8 @@
 <h1>StaticPages#top</h1>
 <p>Find me in app/views/static_pages/top.html.erb</p>
 
-<%= link_to 'ログアウト', logout_path, class: 'dropdown-item', data: { turbo_method: :delete } %>
-<%= current_user.name unless current_user.nil? %>
+<% if logged_in? %>
+  <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %>
+<% else %>
+  <%= link_to 'ログイン', login_path %>
+<% end %>
