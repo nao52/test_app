@@ -5,7 +5,7 @@ class GoogleLoginApiController < ApplicationController
 
   skip_before_action :require_login
   before_action :verify_g_csrf_token
-  before_action :google_client_id
+  before_action :google_login_api
 
   def callback
     Google::Auth::IDTokens.verify_oidc(params[:credential], aud: @google_client_id)
