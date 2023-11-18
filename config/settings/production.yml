@@ -1,1 +1,3 @@
-host: "test-app-z991.onrender.com"
+host: <%= ENV['HOST'] %>
+google_client_id: <%= ENV['GOOGLE_CLIENT_ID'] %>
+google_login_uri: <%= ENV['GOOGLE_LOGIN_URI'] %>
