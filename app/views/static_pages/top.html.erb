@@ -1,8 +1,28 @@
+<script src="https://accounts.google.com/gsi/client" async></script>
+
 <h1>StaticPages#top</h1>
 <p>Find me in app/views/static_pages/top.html.erb</p>
 
-<% if logged_in? %>
-  <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to 'ログイン', login_path %>
-<% end %>
+<div>
+  <% if logged_in? %>
+    <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to 'ログイン', login_path %>
+  <% end %>
+</div>
+
+<div class="col-md-2">
+  <div id="g_id_onload"
+      data-client_id="938607287835-1qfde5lo2p693gb7qtsa9nrt5ht4qt83.apps.googleusercontent.com"
+      data-login_uri="http://localhost:3000/google_login_api/callback"
+      data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+      data-type="standard"
+      data-size="large"
+      data-theme="outline"
+      data-text="sign_in_with"
+      data-shape="rectangular"
+      data-logo_alignment="left">
+  </div>
+</div>
