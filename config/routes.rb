@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   
-  post '/google_login_api/callback', to: 'google_login_api#callback'
+  get 'auth/:provider/callback', to: 'google_login_api#callback'
+  get 'auth/failure', to: redirect('/')
 end
