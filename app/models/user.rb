@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :remember_me_token, uniqueness: true, allow_nil: true
 
   def add_subscriptions(subscriptions_channels)
+    channels.delete_all
     subscriptions_channels.each do |channel|
       channels << channel unless subscription_channel?(channel)
     end

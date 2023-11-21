@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def channels
+    @user = User.find(params[:id])
+    @channels = @user.channels
+  end
+
   private
 
   def user_params
