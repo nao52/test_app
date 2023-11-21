@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_21_062630) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_21_113854) do
   create_table "channels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "channel_id", null: false
-    t.string "thumbnail_url", null: false
+    t.string "thumbnail_url"
     t.string "name", null: false
     t.integer "subscriber_count", null: false
-    t.text "description", null: false
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_channels_on_channel_id", unique: true
@@ -49,6 +49,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_062630) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  create_table "videos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "video_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.string "video_url", null: false
+    t.bigint "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_videos_on_channel_id"
+    t.index ["video_id"], name: "index_videos_on_video_id", unique: true
+    t.index ["video_url"], name: "index_videos_on_video_url", unique: true
+  end
+
   add_foreign_key "subscription_channels", "channels"
   add_foreign_key "subscription_channels", "users"
+  add_foreign_key "videos", "channels"
 end
