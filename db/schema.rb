@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_17_020116) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_21_062630) do
+  create_table "channels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "channel_id", null: false
+    t.string "thumbnail_url", null: false
+    t.string "name", null: false
+    t.integer "subscriber_count", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_channels_on_channel_id", unique: true
+  end
+
+  create_table "subscription_channels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_subscription_channels_on_channel_id"
+    t.index ["user_id"], name: "index_subscription_channels_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -29,4 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_020116) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "subscription_channels", "channels"
+  add_foreign_key "subscription_channels", "users"
 end

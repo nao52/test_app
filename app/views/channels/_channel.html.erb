@@ -1,0 +1,9 @@
+<li>
+  <%= image_tag channel.thumbnail_url, width: 100, height: 100 %>
+  <p><%= "チャンネル名:#{channel.name}" %></p>
+  <p><%= "チャンネル登録者数:#{channel.subscriber_count}人" %></p>
+  <p>チャンネル概要</p>
+  <p><%= channel.description %></p>
+</li>
+
+<hr>
