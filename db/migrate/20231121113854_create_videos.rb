@@ -4,7 +4,6 @@ class CreateVideos < ActiveRecord::Migration[7.0]
       t.string :video_id,   null: false, index: { unique: true }
       t.string :title,      null: false
       t.text :description
-      t.string :video_url,  null: false, index: { unique: true }
       t.references :channel, null: false, foreign_key: true
 
       t.timestamps

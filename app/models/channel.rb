@@ -16,21 +16,21 @@ class Channel < ApplicationRecord
     subscriptions = service.list_subscriptions(:snippet, mine: true, max_results: 100)
     subscriptions.items.each do |item|
       channel_id = item.snippet.resource_id.channel_id
-      subscription_channels << find_or_create_from_subscription(channel_id)
+      subscription_channels << find_or_create_by_channel_id(channel_id)
     end
     subscription_channels
   end
 
-  private
-
-  def self.find_or_create_from_subscription(channel_id)
-    channel_params = channel_params_from_user_subscription(channel_id)
+  def self.find_or_create_by_channel_id(channel_id)
+    channel_params = channel_params_by_channel_id(channel_id)
     find_or_create_by(channel_id: channel_params[:channel_id]) do |channel|
       channel.update(channel_params)
     end
   end
 
-  def self.channel_params_from_user_subscription(channel_id)
+  private
+  
+  def self.channel_params_by_channel_id(channel_id)
     service = Google::Apis::YoutubeV3::YouTubeService.new
     service.key = Settings.google_api_key
     channel_info = service.list_channels("snippet,statistics", id: channel_id).items[0]

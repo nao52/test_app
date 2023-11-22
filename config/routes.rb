@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :password_resets, only: %i[new create edit update]
   resources :channels, only: %i[index]
+  resources :videos, only: %i[index]
   
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

@@ -19,6 +19,10 @@ class User < ApplicationRecord
     end
   end
 
+  # def add_popular_videos(pupular_videos)
+  #   pupular_videos.delete_all
+  # end
+
   def subscription_channel?(channel)
     channels.include?(channel)
   end

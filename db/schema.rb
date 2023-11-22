@@ -53,13 +53,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_113854) do
     t.string "video_id", null: false
     t.string "title", null: false
     t.text "description"
-    t.string "video_url", null: false
     t.bigint "channel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_videos_on_channel_id"
     t.index ["video_id"], name: "index_videos_on_video_id", unique: true
-    t.index ["video_url"], name: "index_videos_on_video_url", unique: true
   end
 
   add_foreign_key "subscription_channels", "channels"
