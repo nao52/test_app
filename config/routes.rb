@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   resources :users, only: %i[new create] do
     member do
-      get :channels
+      get :channels, :videos
     end
   end
   resources :password_resets, only: %i[new create edit update]
   resources :channels, only: %i[index]
+  resources :videos, only: %i[index]
   
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
