@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_21_113854) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_22_063516) do
   create_table "channels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "channel_id", null: false
     t.string "thumbnail_url"
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_113854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_channels_on_channel_id", unique: true
+  end
+
+  create_table "popular_videos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "video_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_popular_videos_on_user_id"
+    t.index ["video_id"], name: "index_popular_videos_on_video_id"
   end
 
   create_table "subscription_channels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -60,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_113854) do
     t.index ["video_id"], name: "index_videos_on_video_id", unique: true
   end
 
+  add_foreign_key "popular_videos", "users"
+  add_foreign_key "popular_videos", "videos"
   add_foreign_key "subscription_channels", "channels"
   add_foreign_key "subscription_channels", "users"
   add_foreign_key "videos", "channels"

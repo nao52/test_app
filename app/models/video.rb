@@ -1,7 +1,7 @@
 class Video < ApplicationRecord
   belongs_to :channel
 
-  validates :channel_id, presence: true, uniqueness: true
+  validates :video_id, presence: true, uniqueness: true
   validates :title, presence: true
 
   def self.popular_videos(access_token)

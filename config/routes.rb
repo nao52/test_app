@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   resources :users, only: %i[new create] do
     member do
-      get :channels
+      get :channels, :videos
     end
   end
   resources :password_resets, only: %i[new create edit update]
